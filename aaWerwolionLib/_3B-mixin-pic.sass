@@ -1,0 +1,202 @@
+@mixin Test_Mask-SVG($url , $size: cover)
+  -webkit-mask-image: $url
+  mask-image: $url  //  mask-image: url(../img/svg/masc.png) 
+  -webkit-mask-repeat: no-repeat
+  -webkit-mask-size: $size
+  mask-size: $size  // mask-size: 400rem - изменение
+  // SVG preserveAspectRatio="xMidYMid meet" 
+  // preserveAspectRatio='none' // для резиновых фонов
+  // preserveAspectRatio='meet' // содержимое стремится уместиться целиком == contain
+  // preserveAspectRatio='slice' // cover всю область видимости + обрезка
+  //-----------------------------------
+  //  object-fit: cover
+  // -webkit-mask-image: url(#mask)
+  // mask-image: url(#mask)
+
+  // -webkit-mask-image: linear-gradient(black, transparent)
+  // mask-image: linear-gradient(black, transparent)
+
+
+  
+  
+  
+//pi       -= IMG =-         
+
+
+=bgImg($H:n,$tipe:1,$p:2, $x:50%, $y:50%) //   ($H,$tipe:cover,$p:2 , $x:50%, $y:50%) $p =position
+  +Relative(n,n,  2  ,n,n) // (t,l,z-index,b,r)
+  @if $H != n
+    padding-bottom: $H 
+  ._ibg-img
+    +Abs(0,0,-1)
+    +size3(100%)
+    @if $tipe == 1
+      object-fit: cover
+    @if $tipe == 2
+      object-fit: contain
+    @if $p == 1
+      object-position: top
+    @if $p == 2
+      object-position: center
+    @if $p == 3
+      object-position: bottom
+    @if $p == 10
+      object-position: $x $y
+=bgImg2
+ +bgImg(n, 2)
+//=====================================
+._ibg
+  +bgImg
+._ibg-c
+  +bgImg2
+//-<<<<<  >>>>>>>>>>>>>>>>>>
+._ibg-f
+  +Relative(n,n,  2  ,n,n) // (t,l,z-index,b,r)
+  ._ibg-img
+    +Abs(0,0,-1)
+    +size3(100%)
+    object-fit: fill
+  
+
+//=====================================
+
+//pi NEW
+=Bgm
+  background-repeat: no-repeat
+  background-size: cover 
+=BgmCn
+  background-repeat: no-repeat
+  background-size: contain
+=Bgm2( $size: 120% , $position: 50% 50%)
+  +Bgm
+  background-position: $position
+  background-size: $size
+
+
+
+//===================================
+@mixin img0($w:100%,$h:100%,$r:n)   // normalize
+  @if $w != n 
+    +size3( $w, $h, $r)
+  object-position: center
+// @include img($w:100%,$h:100%)
+@mixin img($w:100%,$h:100%,$r:n)   // normalize
+  +img0($w,$h,$r) 
+  object-fit: cover
+@mixin img2($w:100%,$h:100%,$r:n)   // normalize
+  +img0($w,$h,$r) 
+  object-fit: contain
+// @include img($w:100%,$h:100%)
+
+=img-put
+  ._img-put
+    display: inline-block
+    max-width: 100%
+    img 
+      +img()
+
+//-===============================================================================================================
+// ._img ._ibg-img
+//   +img()   //(100%X2)cover //2=contain
+// ._img-c ._ibg-img
+//    +img2() 
+   
+// ._img ._to-img
+//   +img()   //(100%X2)cover //2=contain
+// ._img-c ._to-img
+//    +img2() 
+// span._img-c , a._img-c
+//   display: inline-block
+
+// picture
+//   flex: 0 0 0
+  
+
+
+//=======================================
+=imgB($w:100%,$h:n ,$r:n)   // normalize
+  @if $w != n 
+    +size3( $w, $h, $r)
+  object-position: center
+  object-fit: cover
+=imgB2($w:100%,$h:n ,$r:n)   // normalize
+  @if $w != n 
+    +size3( $w, $h, $r)
+  object-position: center
+  object-fit: contain
+
+
+
+
+@mixin img-gum($w:100%,$h:100%,$r:n)  
+  @include size( $w, $h, $r)
+  object-fit: cover
+  @include Abs(0,0)
+  &__frame
+    position: relative
+    padding-bottom:50%
+    overflow: hidden // .img_cntr{}
+// @include img-gum($w:100%,$h:100%) + &__frame
+
+
+// test
+@mixin test-gum-img-masc
+  img
+    display: block
+    padding:  rem(40) 
+    background-color: #000
+
+
+
+
+
+
+
+//==========================================
+
+
+
+
+
+
+=repeat-bg
+  background-image: url("../img/fon.jpg")
+  background-repeat: repeat
+  background-position: center
+  background-size:  rem(300) 
+
+
+
+
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+=img-filter
+  filter: grayscale(0%) //серый
+  filter: brightness(300%)
+  filter: contrast(0%)  // контраст
+  filter: saturate(0%) //  Насыщенность
+  filter: sepia(100%) // старина
+  filter: hue-rotate(90deg) //Поворот цвета
+  filter: invert(100%)
+  filter: blur(1px)
+  filter: opacity(75%)
+  filter: drop-shadow(5px 5px 10px #666)
+  filter: url('#greenish') // svg
+  filter: sepia(1) contrast(2) brightness(200%)
+  //================================================================
+  background-blend-mode: overlay // Режим перекрытия.
+  background-blend-mode: soft-light // Режим мягкий свет.
+  background-blend-mode: hard-light  // Режим жёсткий свет
+  background-blend-mode: darken // Режим затемнения
+  background-blend-mode: multiply  // Режим умножения
+  background-blend-mode: color-burn // Режим «выжигания» основы. 
+  background-blend-mode: lighten   // Режим замены светлым.
+  background-blend-mode: screen   //Режим экрана. 
+  background-blend-mode: color-dodge  // Режим осветления основы. 
+  background-blend-mode: difference   // Режим вычитания.
+  background-blend-mode: exclusion    // Режим исключения.
+  background-blend-mode: hue          // Режим цветового тона
+  background-blend-mode: saturation   // Режим насыщенности.
+  background-blend-mode: color       // Режим цветности.
+  background-blend-mode: luminosity   // Режим яркости. 
+  //========================================================
+  mix-blend-mode: multiply

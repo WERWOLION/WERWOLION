@@ -1,0 +1,303 @@
+//==================================================
+@mixin size3($w:n  ,$h:$w, $r:n,  $c:n , $separator:🐬,$nb:n,$nr:n )
+  @if $w != n   and $w != ➡️
+      width: $w
+  @if $h != n and $h != c  and $h != w and $h != ⬇️
+      height: $h
+  @if $h == c and $w != n and $w != ➡️
+    border-radius: 50%  
+    height: $w
+  @if $h == w  and $w != n and $w != ➡️
+    height: $w
+  @if $r != n and $r != c and $h != c and $r != 🔄
+    border-radius: $r 
+  @if $r == c and $h != c 
+    border-radius: 50%
+  //=======
+  @if $c != n and $c != 🈯
+     background-color: $c
+  @if $separator == 1 
+    overflow: hidden
+    overflow: clip 
+  @if $separator == 2 or $separator == c 
+    overflow: clip 
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $nb != n or $nr != n
+    &:not(:last-child)
+      @if $nb != n  and $nb != b  and $nb != ⬇️
+        margin-bottom:  rem( $nb ) 
+      @if $nr != n  and $nr != r and $nr != ➡️
+        margin-right:   rem( $nr )   
+  
+  
+  
+  
+  
+//=====================================================
+@mixin size($w:n  ,$h:$w,$r:n,$c:n ,$separator:🐬,$nb:n,$nr:n  )
+  @if $w != n    and $w != ➡️
+      width: rem($w) 
+  @if $h != n and $h != c and $h != w and $h != ⬇️
+      height: rem($h) 
+  @if $h == c and $w != n and $w != ➡️
+    border-radius: 50%  
+    height: rem($w)
+  @if $h == w  and $w != n
+    height: rem($w) 
+  @if $r != n and $r != c and $h != c and $r != 🔄
+      border-radius: rem($r)  
+  @if $r == c  and $h != c 
+     border-radius: 50%
+  //=======
+  @if $c != n  and $c != 🈯
+    background-color: $c
+  @if $separator == 1 
+    overflow: hidden
+    overflow: clip 
+  @if $separator == 2 or $separator == c 
+    overflow: clip 
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $nb != n or $nr != n
+    &:not(:last-child)
+      @if $nb != n  and $nb != b  and $nb != ⬇️
+        margin-bottom:  rem( $nb ) 
+      @if $nr != n  and $nr != r and $nr != ➡️
+        margin-right:   rem( $nr ) 
+//-<<<<<  >>>>>>>>>>>>>>>>>>
+@mixin size4($em:16, $w:n  ,$h:$w,$r:n,$c:n ,$separator:🐬,$nb:n,$nr:n  )
+  @if $em == n
+    $em: 16
+  @if $w != n    and $w != ➡️
+      width: em($w , $em) 
+  @if $h != n and $h != c and $h != w and $h != ⬇️
+      height: em($h ,$em) 
+  @if $h == c and $w != n and $w != ➡️
+    border-radius: 50%  
+    height: em($w ,$em)
+  @if $h == w  and $w != n
+    height: em($w ,$em) 
+  @if $r != n and $r != c and $h != c and $r != 🔄
+      border-radius: em($r ,$em)  
+  @if $r == c  and $h != c 
+     border-radius: 50%
+  //=======
+  @if $c != n  and $c != 🈯
+    background-color: $c
+  @if $separator == 1 
+    overflow: hidden
+    overflow: clip 
+  @if $separator == 2 or $separator == c 
+    overflow: clip 
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $nb != n or $nr != n
+    &:not(:last-child)
+      @if $nb != n  and $nb != b  and $nb != ⬇️
+        margin-bottom:  em( $nb, $em) 
+      @if $nr != n  and $nr != r and $nr != ➡️
+        margin-right:   em( $nr , $em) 
+
+
+
+@mixin size5($w:n  ,$h:$w,$r:n,$c:n ,$s:🐬,$nb:n,$nr:n  )
+   +size4(16,$w,$h,$r,$c,$s,$nb,$nr) //(w,h,rad,c,hid) /№2  R-R-px(sizeR) 
+   
+
+
+
+
+
+//=====================================================
+@mixin size2($w:n  ,$h:$w,$r:n,$c:n , $separator:🐬,  $sh1:0 , $sh2:0  , $sh3:0  ,$shc:rgba(0, 0, 0, 0.59) ,$nb:n,$nr:n  )
+  @if $w != n     and $w != ➡️
+      width: rem( $w ) 
+  @if $h != n and $h != c  and $h != w and $h != ⬇️
+      height: rem($h)
+  @if $h == c and $w != n  and $w != ➡️
+    border-radius: 50%  
+    height: rem($w)
+  @if $h == w and $w != n
+    height: rem($w)
+  @if $r != n and $r != c and $h != c  and $r != 🔄
+      border-radius: $r 
+  @if $r == c and $h != c  
+     border-radius: 50%
+  //=======
+  @if $c != n and $c != 🈯
+    background-color: $c
+  @if $separator == 1 
+    overflow: hidden
+    overflow: clip 
+  @if $separator == 2 or $separator == c 
+    overflow: clip 
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $nb != n or $nr != n
+    &:not(:last-child)
+      @if $nb != n  and $nb != b  and $nb != ⬇️
+        margin-bottom:  rem( $nb ) 
+      @if $nr != n  and $nr != r and $nr != ➡️
+        margin-right:   rem( $nr ) 
+
+
+//====================================================
+
+//p 2023
+@mixin sizeMin($w:n  ,$h:n,$r:n,$c:n ,$over:n, $nb:n,$nr:n )
+  @if $w != n   and $w != ➡️
+     min-width: rem($w) 
+  @if $h != n    and $h != ⬇️  
+     min-height: rem($h)
+  +size( n ,n ,$r:$r, $c:$c ,$separator:$over,$nb:$nb,$nr:$nr) 
+
+@mixin sizeMax($w:n  ,$h:n,$r:n,$c:n, $over:n, $nb:n,$nr:n )
+  @if $w != n   and $w != ➡️
+     max-width: rem($w) 
+  @if $h != n    and $h != ⬇️   
+     max-height: rem($h)
+  +size( n ,n ,$r:$r, $c:$c, $separator:$over,$nb:$nb,$nr:$nr) 
+
+
+@mixin sizeMax4($em:16,$w:n  ,$h:n,$r:n,$c:n, $over:n, $nb:n,$nr:n )
+  @if $em == n
+    $em: 16
+  @if $w != n   and $w != ➡️
+     max-width: em($w , $em) 
+  @if $h != n    and $h != ⬇️   
+     max-height: em($h ,$em) 
+  +size4($em, n ,n ,$r:$r, $c:$c, $separator:$over,$nb:$nb,$nr:$nr) 
+@mixin sizeMax5($w:n ,$h:n,$r:n,$c:n, $over:n, $nb:n,$nr:n )
+  +sizeMax4(16,$w,$h,$r,$c,$over,$nb,$nr) 
+
+
+@mixin sizeMin4($em:16,$w:n  ,$h:n,$r:n,$c:n, $over:n, $nb:n,$nr:n )
+  @if $em == n
+    $em: 16
+  @if $w != n   and $w != ➡️
+     min-width: em($w , $em) 
+  @if $h != n    and $h != ⬇️   
+     min-height: em($h ,$em) 
+  +size4($em, n ,n ,$r:$r, $c:$c, $separator:$over,$nb:$nb,$nr:$nr) 
+@mixin sizeMin5($w:n ,$h:n,$r:n,$c:n, $over:n, $nb:n,$nr:n )
+  +sizeMin4(16,$w,$h,$r,$c,$over,$nb,$nr) 
+
+
+
+
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+=Grid($d:n , $jc:n, $ac:n ,$jitm:n , $ai:n  , $gap:n ,$ga:n ) //($d:displ/ $jc/ $ac/ $jitm / $ai/ $gap /$ga)
+  @if $d == 1
+    display: grid
+  @if $d == 2 or $d == i
+    display: inline-grid
+  @if $d == 3 or $d == s
+    display: subgrid  
+
+  //2====================
+  @if $jc == start or ($jc == 1)
+      justify-content: start
+  @if ($jc == c) or  ($jc == cntr) or ($jc == cnr) or ($jc == 2) or  ($jc == centr)
+      justify-content: center
+  @if $jc == end or $jc == e or ($jc == 3)
+      justify-content: end
+  @if $jc == 4 or $jc == 5 or ($jc == stretch)
+      justify-content: stretch
+  //===
+  @if ($jc == sb) or ($jc == 11)
+      justify-content: space-between 
+  @if ($jc == se)  or ($jc == 12)
+      justify-content: space-evenly
+  @if ($jc == sa) or  ($jc == 13)
+      justify-content: space-around
+
+  //3================================
+  @if $ac == start or ($ac == 1)
+      align-content: flex-start
+  @if ($ac == c) or  ($ac == cntr) or ($ac == cnr) or ($ac == 2) or  ($ac == centr)
+      align-content: center
+  @if $ac == end or $ac == e or ($ac == 3)
+      align-content: flex-end
+  @if $ac == 4 or $ac == 5 or ($ac == stretch)
+      align-content: stretch
+  //===
+  @if ($ac == sb) or ($ac == 10)
+      align-content: space-between 
+  @if ($ac == se)  or ($ac == 12)
+      align-content: space-evenly
+  @if ($ac == sa) or  ($ac == 13)
+      align-content: space-around
+    
+  //4====================
+  @if $jitm == 1  or $jitm == st or $jitm == start or $jitm == str
+      justify-items: start
+  @if $jitm == 2  or   $jitm == c  or  ($jitm == cntr) or ($jitm == cnr) or  ($jitm == centr)
+      justify-items: center
+  @if $jitm == 3  or   $jitm == e  or  ($jitm == end)
+      justify-items:  end
+  @if $jitm == 4 or   $jitm == 5 or   $jitm == 10   or $jitm ==  stretch
+      justify-items: stretch
+
+  @if $ai == 1  or $ai == st or $ai == start
+      align-items:  start
+  @if $ai == 2  or   $ai == c  or  ($ai == cntr) or ($ai == cnr) or  ($ai == centr)
+      align-items:  center
+  @if $ai == 3  or   $ai ==  e  or  ($ai == end)
+      align-items:  end
+  @if $ai == 4 or   $ai == 5 or   $ai == 10   or $ai ==  stretch
+      align-items:  stretch
+  
+  //===============
+  @if $gap != n  and $gap != gap
+     gap: $gap
+  //===============
+  @if $ga == 1 or  $ga == row or $ga == r
+    grid-auto-flow: row
+  @if $ga == 2 or  $ga == column or $ga == cl  or $ga == clm
+    grid-auto-flow: column
+  @if $ga == 3 
+    grid-auto-flow: dense
+
+=Grid0( $jc:n, $ac:n ,$jitm:n , $ai:n  , $gap:n ,$ga:n ) 
+  +Grid(n , $jc:$jc, $ac:$ac ,$jitm:$jitm , $ai:$ai  , $gap:$gap ,$ga:$ga ) 
+  
+//===================================================
+=🦄gridElm($js:n  ,$as:n ,  $column:n , $row: n , $order:n  )//-$js ,$as,  g-row: 1/span 2 |column //== start/end  //$order
+  @if $js == 1 or $js == st or $js == start
+    justify-self: start
+  @if $js == 2 $js == c  or  ($js == cntr) or ($js == cnr) or  ($js == centr)
+    justify-self: center
+  @if $js == 3 or  $js ==  e  or  ($js == end)
+    justify-self: end
+  @if  $js == 4 or  $js == 5 or  $js == 10  or  $js == stretch
+    justify-self:  stretch
+  //====
+  @if $as == 1  or $as == st or $as == start 
+      align-self:  start
+  @if $as == 2  or  $as == c  or  ($as == cntr) or ($as == cnr) or  ($as == centr)
+      align-self:  center
+  @if $as == 3  or  $as ==  e  or  ($as == end)
+      align-self: end
+  @if $as == 4 or   $as == 5 or $as == 10  or $as ==  stretch
+      align-self:  stretch
+  //===
+  @if $row != n
+     grid-row:  $row  //grid-row: 1 / span 2 
+  @if $column != n   
+    grid-column:  $column  // span 2 
+  @if $order != n  
+     order: $order
+
+
+=🦄CentrGridElm($js:n  ,$as:n , $row: n , $column:n , $order:n )
+  margin: auto
+  +🦄gridElm( $js, $as , $row , $column , $order )
+
+   
+  
+
+
+

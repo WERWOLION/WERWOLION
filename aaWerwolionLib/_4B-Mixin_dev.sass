@@ -1,0 +1,43 @@
+=bgColor($c:1 ,$c2:n)
+  @if $c == 1
+    background-color: rgba(66, 242, 110, 0.595)
+  @if $c == 2  
+    background-color: rgba(66, 230, 242, 0.595)
+  @if $c == 3  
+    background-color: rgba(248, 252, 0, 0.498)
+  @if $c == 4  
+    background-color: rgba(255, 116, 185, 0.498)
+  @if $c == 5 
+    background-color: rgba(252, 0, 0, 0.498)
+  @if $c2 != n
+    background-color: $c2
+
+
+
+=testBorder($counter:1 , $size: 1,$color:#fff )
+  @if $counter == 1
+      $color:#f60707 
+  @if $counter == 2
+      $color:#060000 
+  @if $counter == 3
+      $color:#f6e607 
+  @if $counter == 4
+      $color:#079ef6 
+  @if $counter == 5
+      $color:#0bf607 
+  @if $counter == 11
+      $color:#f60707 
+      $size:4
+  @if $counter == 12
+      $color:#060000 
+      $size:4
+  @if $counter == 13
+      $color:#f6e607
+      $size:4
+  @if $counter == 14
+      $color:#079ef6 
+      $size:4
+  @if $counter == 15
+      $color:#0bf607  
+      $size:4
+  border: rem($size) solid $color

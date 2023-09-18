@@ -1,0 +1,163 @@
+// Naming  Technical classes  .-  or .--  //  .-type_name  ".--js_open" ".-js_open"
+//._js_  == JS sript    .-sp_  == special  
+// ._l_  == my Library ".--l_flex" or   ".--flex"
+// ._b_  == base "General classes "
+//extra classes naming  .-name  == blockname--name
+// ._classes == Temporary or ReducingName  ,  .--classes  == basicName(LibName) 
+// preserveAspectRatio='none'
+
+button , a
+  *
+    pointer-events: none // auto
+
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.p-img //(100%X2)cover //2=contain
+    +img()   //(100%X2)cover //2=contain
+.p-img-c //(100%X2) 2=contain
+    +img2() 
+
+.bg-video
+  overflow: hidden
+  overflow: clip
+  +Relative(n,n,  n  ,n,n) // (t,l,z-index,b,r)
+  ._video-bg
+    +size(100%) //  +Abs(50%, 50%, 1 ,n,n) // (t,l,z-index,b,r)
+    object-fit: contain
+
+.p__video-bg
+  object-fit: contain
+
+
+
+span._img-c , a._img-c 
+  display: inline-block
+._svg  svg , .svg svg , .p-svg
+  +size3(100%)   //(w ,h,radius ,color,c) /№2  R-R-px(sizeR), №3  R-R-R 
+
+
+//-<<<<<  >>>>>>>>>>>>>>>>>>
+.p-mark
+  +Relative(n,n,  n  ,n,n) // (t,l,z-index,b,r)
+  &__led
+    +Abs( rem(-80) ,n, n ,n,n) // (t,l,z-index,b,r)
+
+._hide
+  +Abs(0,0, -10 ,n,n) // (t,l,z-index,b,r)
+  pointer-events: none // auto
+  opacity: 0
+._hide2
+  +Abs(-200vw,-200vw, -10 ,n,n) // (t,l,z-index,b,r)
+  opacity: 0
+
+._txt-hide
+  overflow: hidden
+  overflow: clip
+  display: -webkit-box //💥
+  -webkit-line-clamp: 5 //💥
+  -webkit-box-orient: vertical //💥
+  text-overflow: ellipsis //🛂
+._txt-hide--2
+  -webkit-line-clamp: 2 //💥
+
+
+//🛂//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.drop-win
+  +Relative(n,n,  5  ,n,n) // (t,l,z-index,b,r)
+  cursor: pointer
+  &:hover , &:focus //outline: 3px solid orange
+    .drop-win__chl
+        opacity: 1
+        pointer-events: auto // auto
+        z-index: 20
+  &__chl
+    +Abs(n,0, 20 , 0,n) // (t,l,z-index,b,r) inset
+    opacity: 0
+    pointer-events: none // auto
+    transform: translate( 0 , 98%) // scale() rotate(45deg)// transform-origin: 100% 0% 0   
+
+
+
+
+
+
+    
+    
+//*js  .swiper
+.swiper-slide , .swiper , .swiper-wrapper
+  box-sizing: border-box
+.swiper , .swiper * 
+   box-sizing: border-box
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//p       -= General classes =-         
+
+// Technical classes
+
+// ._hover-link-effect
+//   transition: 0.3s
+//   &:hover , &:active
+//       text-decoration-line: underline
+//       color: #0072FF
+//       cursor: pointer
+// ._hover-link-effect--b
+//   transition: 0.3s
+//   &:hover , &:active
+//       color: #E7587E
+//       cursor: pointer
+
+
+
+
+//==============================================
+// ._border-gradient
+//   border:  max(1px, rem(1) ) solid transparent
+//   border-image: linear-gradient(90deg, #E7587E 0%, #B776ED 50%, #45AAEA 100%)
+//   -moz-border-image: -moz-linear-gradient(90deg, #E7587E 0%, #B776ED 50%, #45AAEA 100%)
+//   -webkit-border-image: -webkit-linear-gradient(90deg, #E7587E 0%, #B776ED 50%, #45AAEA 100%)
+//   -webkit-border-image: -webkit-gradient(90deg, #E7587E 0%, #B776ED 50%, #45AAEA 100%) //safari
+//   -webkit-border-image-slice: 2
+//   border-image-slice: 1
+
+
+
+
+
+
+//p       -= JS =-         
+
+// #header-fix , #header-fix *
+//   /* Свойства изменение которых необходимо отслеживать */
+//   transition-property: height
+//   /* Устанавливаем "незаметную для глаза" длительность перехода */
+//   transition-duration: 1ms
+  

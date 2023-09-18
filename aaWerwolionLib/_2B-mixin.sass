@@ -1,0 +1,323 @@
+//P     - = ✦✦  Base mixin ✦✦ =-              */
+$ee: ease
+$ei: ease-in
+$eo: ease-out 
+$eio: ease-in-out
+$ss: step-start
+$se: step-end
+$l: linear
+$FR: forwards
+$rev: reverse
+$INF: infinite 
+
+
+
+[data-fullscreen] 
+  min-height: 100vh
+  min-height: 100svh
+  min-height: calc(var(--vh, 1vh) * 100)
+  @media (max-width: rem($mobile) ) 
+      transition: height 0.2s
+=fullscreen
+  min-height: 100vh
+  min-height: 100svh
+  @media (max-width:  rem($mobile)  ) 
+    min-height: calc(var(--vh, 1vh) * 100)
+    min-height: 100svh
+    transition: height 0.2s
+=fullscreen2
+  height: 100vh
+  height: 100svh
+  @media (max-width: rem($mobile) ) 
+    height: calc(var(--vh, 1vh) * 100)
+    height: 100svh // dvh
+    transition: height 0.2s
+
+
+
+//p       -=  FLEX =-         
+=Flex($d:n , $jc:n , $ai:n  , $gap:n  , $fw: n  , $ac: n) //($d: display/$jc:justify-content/$ai:align-items/$gap / $ac: n)
+  @if $d == 1
+    display: flex
+  @if $d == 2
+    display: inline-flex
+  @if ($d == clm) or ($d == cl) or ($d == column) or ($d == c)
+    flex-direction: column
+    display: flex
+  @if ($d == 2clm) or ($d == 2cl) or ($d == 2column)  or ($d == 2c)
+    display: inline-flex
+    flex-direction: column
+  @if $d == 2n or  $d == nc 
+    flex-direction: column
+  @if $d == 1n
+    flex-direction: row
+
+  //2====================
+  @if ($jc == sb) or ($jc == 10)
+    justify-content: space-between 
+  @if $jc == start or ($jc == 1)
+    justify-content: flex-start
+  @if ($jc == c) or  ($jc == cntr) or ($jc == cnr) or ($jc == 2) or  ($jc == centr)
+    justify-content: center
+  @if $jc == end or $jc == e or ($jc == 3)
+    justify-content: flex-end
+  //======================
+  @if ($jc == se)  or ($jc == 12)
+    justify-content: space-evenly
+  @if ($jc == sa) or  ($jc == 13)
+    justify-content: space-around
+  //===================================================================
+
+  @if ($ai == c) or ($ai == centr) or ($ai == cntr) or ($ai == 2)
+    align-items: center
+  @if ($ai == s) or ($ai == start) or ($ai == 1)
+    align-items: flex-start
+  @if ($ai == e) or ($ai == end) or ($ai == 3)
+    align-items: flex-end
+  //===================================================================    
+ 
+  @if ($ac == c) or ($ac == centr) or ($ac == cntr) or ($ac == 2)
+    align-content: center
+  @if ($ac == s) or ($ac == start) or ($ac == 1)
+    align-content: flex-start
+  @if ($ac == e) or ($ac == end) or ($ac == 3)
+    align-content: flex-end
+  @if ($ac == 4) or  ($ac == stretch)
+    align-content: stretch
+
+  @if ($ac == 11) or ($ac == sb)
+    align-content: space-between
+  @if ($ac == 12)  or ($ac == sa)
+    align-content: space-around
+
+  //===================================================================
+
+  @if $gap != n  and $gap != g   and $gap != gap  
+    gap: $gap
+  //==========
+  @if $fw == 1  or $fw == w or $fw == wrap
+    flex-wrap: wrap
+  @if $fw == 0 or $fw == nw
+    flex-wrap: nowrap
+  @if $fw == 3
+    flex-wrap: wrap-reverse
+
+=Flex0( $fd:n , $jc0:n , $ai0:n   , $gap0:n  , $fw0: n)
+  @if $fd == 1 or $fd ==  row or $fd ==  r
+      flex-direction: row
+  @if $fd == 2 or ($fd == clm) or ($fd == cl) or ($fd == column) or ($fd == c)
+      flex-direction: column
+  @if $fd == -1 or $fd ==  -row or $fd ==  -r
+      flex-direction: row-reverse
+  @if $fd == -2 or ($fd == -clm) or ($fd == -cl) or ($fd == -column) or ($fd == -c)
+      flex-direction: column-reverse
+  +Flex( $d:n , $jc: $jc0 , $ai:$ai0 , $gap:$gap0 , $fw:$fw0)
+
+
+
+
+=center 
+  display: flex  
+  align-items: center
+  justify-content: center
+=center0
+  align-items: center
+  justify-content: center
+
+
+
+
+
+
+
+
+
+//==============================================
+=cardGridX($n:3 , $fr:1fr ,$gap: n)
+  display: grid
+  grid-template-columns: repeat( $n, $fr)
+  @if $gap != n
+    gap: $gap
+// Grids
+=cardGrid($type: fit, $min: 280, $max: 1fr, $gap: rem(30)) //type:fit=1,min:, max:1fr,gap /fill-0
+  display: grid
+  @if $gap != n
+      gap: $gap
+  @if $type == 1
+      $type: fit
+  @if $type == 0
+      $type: fill
+  grid-template-columns: repeat(auto-#{$type}, minmax(rem($min) , $max))
+// auto-fit  == flex 1 0      auto-fill == flex 0 0 
+=cardGrid1($min: 280, $max: 1fr, $gap: rem(30))
+  @if $min == s
+    $min: 280
+  @if $max == s
+    $max: auto
+  @if $max == 1
+    $max: 1fr
+  +cardGrid(fit, $min, $max, $gap) 
+=cardGrid0($min: 280, $max: 1fr, $gap: rem(30))
+  @if $min == s
+    $min: 280
+  @if $max == s
+    $max: auto
+  @if $max == 1
+    $max: 1fr
+  +cardGrid(fill, $min, $max, $gap) 
+
+
+
+
+//w Base
+@mixin Relative0($t:n,$l:n,$z:n, $b:n,$r:n)
+    @if $t != n and $t != ⬆️
+      top: $t
+    @if $l != n and $l != ⬅️
+      left:$l 
+    @if $r  != n and $r != ➡️
+      right: $r
+    @if $b != n and $b != ⬇️
+      bottom: $b
+    @if $z != n 
+      z-index: $z
+
+=Relative($t:n,$l:n,$z:n, $b:n,$r:n)
+  position: relative
+  +Relative0($t:$t,$l:$l,$z:$z, $b:$b,$r:$r)
+// 	@include Relative($top,$left,$bottom,$right,$z-index);
+
+=Abs0($t:n,$l:n,$z:n, $b:n,$r:n)
+  +Relative0($t:$t,$l:$l,$z:$z, $b:$b,$r:$r)
+=Fix0($t:n,$l:n,$z:n, $b:n,$r:n)
+  +Relative0($t:$t,$l:$l,$z:$z, $b:$b,$r:$r)
+
+@mixin Abs($t:n,$l:n,$z:n, $b:n,$r:n)
+  position: absolute
+  +Relative0($t:$t,$l:$l,$z:$z, $b:$b,$r:$r)
+// 	@include Abs($top,$left,$bottom,$right,$z-index);
+
+@mixin Fix($t:n,$l:n,$z:n,$b:n,$r:n)
+  position: fixed
+  +Relative0($t:$t,$l:$l,$z:$z, $b:$b,$r:$r)  
+
+
+
+
+
+
+//====================================================================================
+@mixin Font3($fSize:n,$lh:n,$font-weight:n,$c:n,$name:n , $ls:n,$t:n ,$ta:n)
+  @if  $fSize != n and $fSize != s  
+       font-size: $fSize
+  @if $lh != n and $lh != l
+      line-height: $lh 
+  @if $font-weight != n and $font-weight != w 
+    @if $font-weight == 3 
+      $font-weight: 300  
+    @if $font-weight == 4
+      $font-weight: 400  
+    @if $font-weight == 5 
+      $font-weight: 500  
+    @if $font-weight == 6 
+      $font-weight: 600  
+    @if $font-weight == 7 
+      $font-weight: 700  
+    @if $font-weight == 8 
+      $font-weight: 800  
+    @if $font-weight == 9 
+      $font-weight: 900  
+    font-weight:$font-weight
+  @if $c != n and  $c != 🈯
+      color: $c
+  @if $name != n and $name != name
+     font-family: $name   
+  @if $ls != n and $ls != ls
+    letter-spacing: $ls
+  @if $t == 1
+    text-transform: uppercase
+  @if $t == 2 or $ta == c
+    text-transform: capitalize
+  @if $t == 3 
+    text-transform: lowercase
+
+  @if $ta == 1
+    text-align: left
+  @if $ta == 2 or $ta == c
+    text-align: center
+  @if $ta == 3 
+    text-align: right
+   
+
+@mixin Font($fSize:n,$lh:n,$font-weight:n,$c:n,$name:n , $ls:n ,$t:n ,$ta:n)
+  @if $lh != n and $lh != l
+    @if $fSize != n and  $fSize != s
+      line-height: cof($lh,$fSize) 
+    @if $fSize == n or  $fSize == s
+      line-height: $lh
+  @if $fSize != n and $fSize != s 
+    font-size:  rem($fSize)
+  @if $ls != n and $ls != ls
+    letter-spacing: em($ls , $fSize)
+  +Font3(n ,n ,$font-weight,$c,$name ,n , $t ,$ta)
+
+@mixin Font4($em:16,$fSize:n,$lh:n,$font-weight:n,$c:n,$name:n , $ls:n ,$t:n ,$ta:n)
+  @if $em == n
+    $em: 16
+  @if $lh != n and $lh != l
+    @if $fSize != n and  $fSize != s
+      line-height: cof($lh,$fSize) 
+    @if $fSize == n or  $fSize == s
+      line-height: $lh
+  @if $fSize != n and $fSize != s 
+    font-size:  em($fSize,$em)
+  @if $ls != n and $ls != ls
+    letter-spacing: em($ls , $fSize)
+  +Font3(n ,n ,$font-weight,$c,$name ,$ls, $t ,$ta)
+@mixin Font5($fSize:n,$lh:n,$font-weight:n,$c:n,$name:n , $ls:n ,$t:n ,$ta:n)
+  +Font4(16, $fSize ,$lh ,$font-weight,$c,$name ,$ls , $t ,$ta)
+
+
+
+ 
+@mixin Font2($fSize:n,$lh:n,$font-weight:n,$c:n,$name:n ,$ls:n , $t:n ,$ta)
+  @if  $fSize != n and $fSize != s 
+    font-size: rem($fSize)
+  @if $ls != n and $ls != ls
+    letter-spacing: em($ls , $fSize)
+  +Font3(n ,$lh,$font-weight,$c,$name,n , $t ,$ta)  
+//===========================================================================================
+
+
+
+//p          -=  BTN =-                                             
+@mixin BtnP($w:n , $h:n  , $r:n  , $c:n )
+  @if $w != n 
+    padding: rem($w) rem($h) 
+  @if $r != n
+      border-radius:  $r
+  @if $c != n 
+    background-color: $c
+// @include BtnP($w padding-t , $h pad-r  , $r bor-rad  , $c background )
+@mixin btnP($w:n , $h:n  , $r:n  , $c:n )
+  +BtnP($w, $h , $r  , $c )
+
+@mixin BtnPR($w:n , $h:n  , $r:n  , $c:n )
+  @if $r != n
+      $r:  rem($r) 
+  +BtnP($w, $h , $r  , $c )
+@mixin btnPR($w:n , $h:n  , $r:n  , $c:n )
+  +BtnPR($w ,$h , $r , $c)
+
+
+@mixin btn($w:n,$h:n,$r:n , $c:n ) //(w ,h,radius ,color,c)
+  +size2($w , $h , $r , $c )
+  +center   // flex center 
+@mixin btn2($w:n,$h:n,$r:n , $c:n ) //(w ,h,radius ,color,c)
+  +size($w , $h , $r , $c )
+  +center   // flex center 
+
+
+
+
+// @include btn(w ,h, $r radius , $c background-color )

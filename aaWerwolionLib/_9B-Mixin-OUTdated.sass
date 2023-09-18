@@ -1,0 +1,102 @@
+@mixin Fsa
+  display: flex
+  justify-content: space-around
+=Fse
+  display: flex
+  justify-content: space-evenly
+
+
+
+
+=Fsb($gap:n) //========================
+  display: flex
+  justify-content: space-between 
+  @if $gap != n 
+    gap: $gap
+=FsbA($gap:n)
+  +Fsb($gap)
+  align-items: center
+=FsbC($gap:n)
+  +Fsb($gap)
+  flex-direction: column
+
+=FlexC($gap:n  )
+  display: flex
+  flex-direction: column
+  @if $gap != n 
+    gap: rem($gap) 
+=FlexC2($gap:n)
+   @if $gap != n 
+    gap: $gap
+
+
+
+//🚩-===============================================================================================================
+=FlexGap( $count , $gap )
+  $pr: pr( $count , 1 ) 
+  margin:  0  cof(-$gap , 2)
+  .chaild
+    padding: 0 cof(-$gap , 2)
+    flex: 0 1 $pr
+
+=FlexGap2( $count , $gap , $container:n)   
+  $count2 :  $count - 1
+  @if $count2 > 1
+    $gapAr:  $gap * $count2 
+    $SizeAr: $containerSize  - $gapAr
+    @if $container == n 
+      $Itm: cof($SizeAr , $count)
+    @if ($container != n )
+
+      $Itm: cof($SizeAr , $count )
+    $PrItm: pr($Itm , $SizeAr )
+    flex: 0 1 $PrItm
+  @if $count2 == 1
+    flex: 0 1 auto
+
+
+//🚩-===============================================================================================================
+@mixin anim($n, $t, $fn:0,$d:n,$f:n) // ($n,$t,$f:1,$d,$f:f )
+  @if $fn == 1  
+    animation:  $n $t ease 
+  @if $fn == 2  
+    animation:  $n $t ease-in 
+  @if $fn == 3  
+    animation:  $n $t ease-out
+  @if $fn == 0  
+    animation:  $n $t linear 
+  @if $fn == 4  
+    animation:  $n $t ease-in-out
+  @if $fn == 10  
+    animation:  $n $t step-start 
+  @if $fn == 11  
+    animation:  $n $t step-end
+  @if $d != n  
+    animation-delay: $d 
+  @if $f == f
+    animation-fill-mode: forwards
+
+
+
+//p       -= test =-         
+
+@mixin gapPr($flexItm) //  coefficient
+  $preCof: cof(100,$flexItm)
+  @if ($preCof >= 10 and $preCof <11) 
+    $cof:10
+  @if ($preCof >= 9 and $preCof <11) 
+    $cof:9
+  @if ($preCof >= 8 and $preCof <7) 
+    $cof:8
+  @if ($cof > 1 and $cof <11)     
+    gap: pr((100 - $flexItm *($cof-1)), $cof*100 )
+
+
+
+@function centerP($px, $a ) 
+  @return calc(#{$px} / $a  * let(--size))
+
+
+@mixin  emptyExample
+  width: min(50%, 500px)
+  width: max(50%, 500px)

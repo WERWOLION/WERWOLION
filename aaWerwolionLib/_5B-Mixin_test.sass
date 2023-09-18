@@ -1,0 +1,84 @@
+
+
+//e MASK=-
+@mixin Test-a-mss_Mask-SVG($url)
+  // -webkit-mask-image: url($url)
+  -webkit-mask-image: $url
+  mask-image: $url
+  -webkit-mask-repeat: no-repeat
+  -webkit-mask-size: cover
+  mask-size: cover  // mask-size: 400rem - изменение
+//  +Test_Mask-SVG(url(../img/SVG-MASK.svg))
+= Test_decor-line  
+  display: flex 
+  &::before // декор линия
+    content:'' 
+    flex: 0 0 70rem //-flex-grow, flex-shrink и flex-basis. 
+    margin:  0 30rem 0 0
+    background-color: #a8ff06 
+    height: 2rem
+
+
+= Test-mss_Mask-b($size:n)
+  position: relative
+  &::before
+    +Abs(0,0,2,0,0) // (t,l,z-index,b,r)
+    content:'' 
+    background: url(../img/SVG-MASK-wite.svg)  
+    // +size(600rem)  //(w ,h,radius ,color,c) 
+    background-repeat: no-repeat
+    mix-blend-mode: screen
+    overflow: hidden
+
+= Test_img-aspect-ratio
+  aspect-ratio: 16/9
+  max-width:90%
+  object-fit: cover
+
+= Test_gradient-fon
+  background-color: rgb(95, 138, 162)
+  position: relative
+  z-index: 2
+  &::before
+    content:''
+    +Abs(0,0) // (t,l,z-index,b,r)
+    +size(100%,300rem)  //(w ,h,radius ,color,c) 
+    background: rgb(140,235,255)
+    background: linear-gradient(180deg, rgba(140,235,255,0) 0%, rgba(111,98,254,0.5) 100%)
+    transform: translate(0,-100%)
+    pointer-events: none
+
+//e Test_background-image
+= Test_background-image
+  +size(100%)  //(w ,h,radius ,color,c) 
+  max-height:$square-height  //800
+  background-image: url(/img/title.jpg)
+  background-repeat: no-repeat 
+  background-position: center center
+  background-size: cover// интуитивная растяжка
+  letter-spacing: $letter-spacing-titule  
+
+
+= border-line()
+    position: relative
+    &::before
+      content: ""
+      +Abs(n,0,n,0,13rem) // (t,l,z-index,b,r)
+      background: #E0E8F2
+      height: 1rem 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

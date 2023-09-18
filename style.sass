@@ -1,0 +1,158 @@
+@use "sass:math"
+
+
+
+  
+
+$normalise: 1  // 1 включает файл сброски стилей 0 выключает
+@import 'var'  //  подключение файла переменных
+
+
+// ----scrollbar---- Настойки Скролбара
+$scrollbar-size: 10
+$scrollbar-height: 10                   // 3
+$scrollbar-border-size: 1                   // 3
+$scrollbar-border-radius: 90                    // 3
+$c_scrollbar-background:#fcfcfc
+$c_scroll: #000 //🔽
+$c_scrollbar: $c_scroll //🔽
+$border-color: $c_scroll// input
+//♠♠♠♠♠♠♠♠♠---END---♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠♠
+
+
+
+  
+$minWidth: 320  // минимальная ширина экрана
+$maketSize: 1440  // размер макета
+$containerSize: 1500  // 30 = padding15*2  размер контейнера
+// $cont-padd: 15
+$cont-padd: 15  // отступы контейнера по умолчанию
+$containerSizePadding: $containerSize + $cont-padd * 2
+$container-Type: 2  //1wv гибкий //2 фиксирован //3 в точной величине
+
+
+// - переменные для адаптива     
+$pc: $containerSizePadding // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: 991.98 // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: 767.98 // Телефоны L
+$mobileSmall: 479.98 // Телефоны S
+
+
+//===============================================
+@import "aaWerwolionLib/__0werwLibConnect" //- подключение Фреймворка
+
+
+
+._container     // [class*="_b-container"]
+  margin: 0 auto            
+  padding: 0 rem($cont-padd) 
+  @if $container-Type == 1
+    max-width: calc( vw($containerSize , $maketSize) + rem($cont-padd * 2)) 
+  @if $container-Type == 2
+    max-width: rem($containerSizePadding)
+  @if $container-Type == 3
+    max-width: $containerSizePadding
+
+
+//e  MEDIA    -   1400 1200 tablet992 mobile: em(767.98) 576  em(479.98)     */
+// @media (max-width: em(1300) ) //media(pointer:coarse)==тач  $pc $tablet  $mobileSmall  $containerSize
+//   ._container 
+//     max-width:  rem(960) 
+
+
+
+
+@media (max-width: em(359) ) //media(pointer:coarse)==тач  $pc $tablet  $mobileSmall  $containerSize
+  ._container   
+    padding: 0 rem(15)  
+
+
+
+//P   Blocks  area    ▼ ▼ ▼ ▼
+
+
+
+
+
+@import "general-classes/🔼0_general-classes"     
+@import "general-classes/🔼02_general-classes"     
+@import "b1-example"     
+
+
+
+
+
+ 
+
+
+
+// - пример принудительного масштабирования используя изменение шрифта
+// med =============================
+// @media (min-width:em(2000))
+//     html 
+//       $htmlFS: 16 
+//       $maketWith: 2000 // font-size:  calc(1vw / 3.2)  
+//       font-size: cof(100 * $htmlFS , $maketWith ) * 1vw   // font-size:  1vw
+// @media (max-width:em(1750))
+//     html 
+//       $htmlFS: 16 
+//       $maketWith: 1920 // font-size:  calc(1vw / 3.2)  
+//       font-size: cof(100 * $htmlFS , $maketWith ) * 1vw  
+    
+
+
+
+
+//p Вырвниватель =========================================
+// @mixin alignment +alignment
+
+@media (min-width:em(760)) 
+  html,body
+    scrollbar-gutter: stable both-edges
+    scrollbar-gutter: stable
+   
+
+
+
+
+// пример выравнивания контента при overflow: hidden
+@if $alignment == 1   
+  @media (min-width:em(1000)) 
+    .popup-show .wrapper
+      padding-right: rem($scrollbar-size) 
+    .popup-show [data-alignment="alignment"] 
+      padding-right: rem($scrollbar-size) 
+    .popup-show [data-alignment="alignment2"] 
+      $transform:  $scrollbar-size
+      transform: translate( rem(-$transform))
+    // =============  //w MOZILA  // = = =   = = =   = = =
+    @-moz-document url-prefix()
+      .popup-show .wrapper
+        padding-right: 0
+      .popup-show [data-alignment="alignment"] 
+        padding-right: 0
+      .popup-show [data-alignment="alignment2"] 
+        transform: translate( 0 )
+  //pi - END- moz-document   --  Вырвниватель
+
+
+
+body
+  will-change: scroll-position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

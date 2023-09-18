@@ -1,0 +1,150 @@
+//W reset
+
+@if $normalise == 1 {
+
+* , *::before , *::after{
+  transition: 0.3s $eo 0s ; //fix
+
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-repeat: no-repeat; //fix  // repeat-y
+  background-position: 50%; // 50% = center  // background-position: 0 0;
+  background-size: cover; //
+  // background: rgb(173, 236, 150) url(../img/) 50% contain  no-repeat ;
+  // scrollbar-gutter: stable both-edges;//🐇новый скролл
+  // scrollbar-gutter: stable;
+  scroll-behavior: smooth; 
+}
+svg ,path { transition: 0.3s $eo 0s ; }  //🐇fix
+
+
+
+
+@if $focusOFF == 2 {
+  :focus, :active {  outline: none; }
+  a:focus,a:active { outline: none; }
+}
+
+input,button,textarea {
+  @include Font3(inherit , inherit, inherit , inherit , inherit);//(size,h,w,col,name )
+}
+button {
+  display: inline-block;
+	cursor: pointer;
+	color: inherit;
+	background-color: inherit;
+}
+a {	color: inherit; }
+// a:link,a:visited,a:hover  {text-decoration: none;}
+
+
+
+li, ul  { list-style: none; } // ul[class],ol[class] { list-style: none;}
+a , a:visited , a:hover { text-decoration: none;}
+h1, h2, h3,h4 , h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+html,body{ 
+  height: 100%;
+  }
+.wrapper{  // Оболочка ==================================================
+  position: relative;
+  //------------------
+  @include Flex(column);  //+Flex(d display , jc justify-content , ai align-items , fd flex-direction )
+  min-height: 100%;
+  min-height: 100svh;
+  overflow: hidden; 
+  overflow: clip;
+
+  >*{min-width: 0;}  // Фикс для слайдеров (swiper)
+}
+
+
+
+
+main{ flex: 1 0 auto} //увеличение
+
+img{
+  vertical-align: top; //fix
+  max-width: 100% ; 
+  flex-shrink: 0 ; 
+  object-fit: cover ;
+  height: initial ;
+} 
+form ,input{ width: 100%;}
+
+
+//W---------------  default --------------------------------
+html{
+  font-size: 16px; // задаём 1rem = 1px font-size: 6.25%  // font-size: calc(1em * .0625);   //fix
+  box-sizing: border-box;
+  }// html, body {width: 100%; } ;// для выравнивания
+body {
+  // @include Font3(rem($font-size-body), 1.2  ,400, $c_font,  $font-base);//(size,h,w,col,name )
+  font-family: $font-base;
+  color:$c_font ;
+  text-rendering: optimizeSpeed;
+  // overflow-x:hidden;  // padding:0;  width: 100%; height: 100%;
+
+
+  -ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+  -webkit-text-size-adjust: none; // Отключает масштабирование текста в горизонтальной ориентации.
+};
+
+*, *:before, *:after {box-sizing: inherit;};//box-sizing: inherit; наследование из html
+
+
+
+//pi -= scrollbar =-
+// Firefox---------------
+* {
+  scrollbar-width: thin;          /* "auto" или "thin"  */
+  scrollbar-color: $c_scrollbar $c_scrollbar-background;   /* плашка скролла и дорожка */
+}
+// --------------CHrome----------------
+
+*::-webkit-scrollbar {
+  width: rem($scrollbar-size) ;               /* ширина scrollbar */
+  height:  rem($scrollbar-height)  ;
+}
+*::-webkit-scrollbar-track {
+  background: $c_scrollbar-background;        /* цвет дорожки */
+}
+*::-webkit-scrollbar-thumb {
+  background-color: $c_scrollbar;    /* цвет плашки */
+  border-radius: rem($scrollbar-border-radius) ;       /* закругления плашки */
+  border: rem($scrollbar-border-size)  solid $c_scrollbar-background;  /* padding вокруг плашки */
+}
+
+table{  border-collapse: collapse; }
+
+
+
+//e IOS
+a, label{ //ios
+	-webkit-tap-highlight-color: transparent; // Устанавливает цвет выделения активного элемента при тапе на нем (a, label).
+}
+input[type=text], input[type=submit], textarea{
+	-webkit-appearance: none; // Отключает наложение на элементы стилей системы: тени, border-radius и т.д
+} 
+
+address{
+  font-style: normal;
+}
+
+
+
+
+
+
+
+}//-END=============================================================================================

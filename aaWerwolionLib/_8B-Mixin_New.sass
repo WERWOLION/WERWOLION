@@ -1,0 +1,451 @@
+=toDynamic($name:'font-size' ,$max:0 , $min: 0 , $wS:1200)
+  #{$name}: max(rem($min), min( vw($max  , $wS),  rem($max) )  ) 
+  #{$name}: clamp(rem($min), vw($max  , $wS) + rem(0,1), rem($max) )//max() min()  
+
+
+=Dynamic($type:n, $max2:0 , $min2: 0 , $wS2:1200 )
+  @if $type == 1 or $type == f or $type == fn
+    $name: 'font-size'
+    +toDynamic($name ,$max2 , $min2 , $wS2)
+  @if $type == 2 or $type == w 
+    $name: 'width'
+    +toDynamic($name ,$max2 , $min2 , $wS2)
+  @if $type == 3 or $type == h
+    $name: 'height'
+    +toDynamic($name ,$max2 , $min2 , $wS2)
+  @if $type == pt
+    $name: 'padding-top'
+    +toDynamic($name ,$max2 , $min2 , $wS2)
+  @if $type == pb
+    $name: 'padding-bottom'
+    +toDynamic($name ,$max2 , $min2 , $wS2)
+
+
+//->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+=toDynamic2($name:'font-size', $type: -1, $val: 0, $wS:1200 , $stop:$val)
+  @if $stop == stop
+     $stop:$val
+  @if $type == -1
+    #{$name}:  min( rem($stop), vw($val , $wS) ) 
+  @if $type == 1
+    #{$name}:  max( rem($stop), vw($val , $wS) ) 
+  @if $type == -2
+    #{$name}: min( rem($stop), pr($val , $wS) ) 
+  @if $type == 2
+    #{$name}: max( rem($stop), pr($val , $wS) )
+      
+  
+
+=Dynamic2($type:n, $fn: -1 , $val2: 0 , $wS2:1200 , $stop:$val)
+  @if $type == 1 or $type == f or $type == fn
+    $name: 'font-size'
+    +toDynamic2($name ,$fn , $val2 , $wS2 ,$stop)
+  @if $type == 2 or $type == w 
+    $name: 'width'
+    +toDynamic2($name ,$fn , $val2 , $wS2 ,$stop)
+  @if $type == 2m
+    $name: 'max-width'
+    +toDynamic2($name ,$fn , $val2 , $wS2 ,$stop)
+  @if $type == -2
+    $name: 'min-width'
+    +toDynamic2($name ,$fn , $val2 , $wS2 ,$stop)
+  @if $type == 3 or $type == h
+    $name: 'height'
+    +toDynamic2($name ,$fn , $val2 , $wS2,$stop)
+  @if $type == pt
+    $name: 'padding-top'
+    +toDynamic2($name ,$fn , $val2 , $wS2,$stop)
+  @if $type == pb
+    $name: 'padding-bottom'
+    +toDynamic2($name ,$fn , $val2 , $wS2,$stop)
+
+
+
+// ➡️ ⬇️ 🔄🐇 🕐 📣 🛂
+=transform($x:n,$y:n ,$r:n ,$s:n ,  $tr-s:n  , $tr-type:n ,$tr-d:n )
+  @if $x!= n and $x!=➡️ 
+    @if $y==n or $y==⬇️ //2
+      @if $r == n or $r==🔄
+        @if $s == n or $s==🐇
+          transform: translate($x, 0)
+        @if $s !=  n and $s!= 🐇
+          transform: translate($x,0) scale($s)
+      @if $r != n and $r!=🔄 //3
+        @if $s == n or $s==🐇
+          transform: translate($x, 0) rotate($r*1deg)
+      @if $r != n and $r!=🔄 //4
+        @if $s !=  n and $s!= 🐇
+          transform: translate($x, 0) rotate($r*1deg) scale($s)
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $y!= n and $y!=⬇️
+    @if $x==n or $x==➡️ //2
+      @if $r == n or $r==🔄
+        @if $s == n or $s==🐇
+         transform: translate(0,$y)
+        @if $s !=  n and $s!= 🐇
+          transform: translate(0,$y) scale($s)
+      @if $r != n and $r!=🔄 //3
+        @if $s == n or $s==🐇
+          transform: translate(0,$y) rotate($r*1deg)
+      @if $r != n and $r!=🔄 //4
+        @if $s !=  n and $s!= 🐇
+          transform: translate(0,$y) rotate($r*1deg) scale($s)
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $y!= n and $y!=⬇️ and $x!=n and $x!=➡️
+      @if $r == n or $r==🔄
+        @if $s == n or $s==🐇
+            transform: translate($x,$y)
+        @if $s !=  n and $s!= 🐇
+          transform: translate($x,$y) scale($s)
+      @if $r != n and $r!=🔄
+        @if $s == n or $s==🐇
+          transform: translate($x,$y) rotate($r*1deg)
+        @if $s!=n and $s!=🐇
+          transform: translate($x,$y) rotate($r*1deg) scale($s)
+  //-<<<<<  >>>>>>>>>>>>>>>>>>
+  @if $x==n or $x==➡️ 
+    @if $y== n or $y==⬇️
+      @if $r != n and $r!=🔄
+        @if $s == n or $s==🐇
+         transform: rotate($r *1deg) 
+  @if $x==n or $x==➡️ 
+    @if $y== n or $y==⬇️
+      @if $r == n or $r==🔄
+        @if $s!=n and $s!=🐇
+          transform:  scale($s) 
+  //->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  @if $tr-s!= n and $tr-type!=n and  $tr-d!=n
+    @if $tr-s!= 🕐 and $tr-type!=📣 and$tr-d!=🛂
+      transition: $tr-s + 0s $tr-type $tr-d + 0s
+  @if $tr-s!= n  and  $tr-d!=n
+      @if $tr-type==n or $tr-type==📣
+        @if  $tr-d!=n and  $tr-d!=🛂
+          transition: $tr-s+0s  $eo $tr-d+0s
+  @if $tr-s!= n and $tr-s!= 🕐
+    @if  $tr-type==📣 or $tr-type==n
+      @if  $tr-d==n or $tr-d==🛂
+        transition: $tr-s+0s $eo 
+
+
+
+
+// ⏫ 🔽🔼⏬    ⏫⏬    ⬆️➡️⬇️⬅️
+=N-last-child($type : 1, $b: n , $r: n )
+  @if $type == 1 or $type == 2 or $type == f
+    &:not(:last-child)
+      @if $type == 1 or $type == 2 or $type == f
+        @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  rem( $b ) 
+        @if $r != n  and $r != r and $r != ➡️
+          margin-right:   rem( $r ) 
+      @if $type == 2 or $type == f
+            @supports (rotate: 180deg )
+              @if $b != n  and $b != b
+                margin-bottom: 0 
+              @if $b != n  and $b != b
+                margin-right:  0
+  @if $type == 3 or $type == gap
+      @if $b != n  and $b != b  and $b != ⬇️
+        margin-bottom:  rem(-$b ) 
+      @if $r != n  and $r != r and $r != ➡️
+        margin-right:   rem(-$r )
+      > * 
+        @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  rem($b) 
+        @if $r != n  and $r != r and $r != ➡️
+          margin-right:   rem($r)
+  @if $type == 5
+      $bb:$b
+      $rr:$r  
+      @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  rem(-$b ) 
+      @if $r != n  and $r != r and $r != ➡️
+        margin-right:   rem(-$r )
+        > * 
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom:  rem($b) 
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:   rem($r)
+      @supports (rotate: 180deg )
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom: 0
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:  0
+          @if $b == n or $b == b or $b == ⬇️
+            $bb:0
+          @if $r == n or $r == r or $r == ➡️
+            $rr:0
+          gap: rem($bb) rem($rr)
+          > * 
+            @if $b != n  and $b != b  and $b != ⬇️
+              margin-bottom:  0
+            @if $r != n  and $r != r and $r != ➡️
+              margin-right:   0
+  @if $type == 4
+      $bb:$b
+      $rr:$r  
+      > *:not(:last-child)
+            @if $b != n  and $b != b  and $b != ⬇️
+              margin-bottom:  rem($b) 
+            @if $r != n  and $r != r and $r != ➡️
+              margin-right:   rem($r)
+      @supports (rotate: 180deg )
+          @if $b == n or $b == b or $b == ⬇️
+            $bb:0
+          @if $r == n or $r == r or $r == ➡️
+            $rr:0
+          gap: rem($bb) rem($rr)
+          > *:not(:last-child)
+              @if $b != n  and $b != b  and $b != ⬇️
+                margin-bottom:  0
+              @if $r != n  and $r != r and $r != ➡️
+                margin-right:   0
+  @if $type == 7
+      @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  rem(-$b ) 
+      @if $r != n  and $r != r and $r != ➡️
+        margin-right:   rem(-$r )
+        > * 
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom:  rem($b) 
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:   rem($r)
+      @supports (rotate: 180deg )
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom: 0
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:  0
+          > * 
+            @if $b != n and $b != b and $b != ⬇️
+              margin-bottom:  0
+            @if $r != n and $r != r and $r != ➡️
+              margin-right:   0
+
+
+
+
+
+
+
+
+=N-last-child4($em:16, $type:1, $b:n , $r:n )
+  @if $em == n
+    $em:16
+  @if $type == 1 or $type == 2 or $type == f    
+    &:not(:last-child)
+      @if $type == 1 or $type == 2 or $type == f
+        @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  em($b ,$em) 
+        @if $r != n  and $r != r and $r != ➡️
+          margin-right:   em( $r ,$em) 
+      @if $type == 2 or $type == f
+            @supports (rotate: 180deg )
+              @if $b != n  and $b != b
+                margin-bottom: 0 
+              @if $b != n  and $b != b
+                margin-right:  0
+  @if $type == 3 or $type == gap
+      @if $b != n  and $b != b  and $b != ⬇️
+        margin-bottom:  em(-$b ,$em)  
+      @if $r != n  and $r != r and $r != ➡️
+        margin-right:   em(-$r ,$em) 
+      > * 
+        @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  em($b,$em) 
+        @if $r != n  and $r != r and $r != ➡️
+          margin-right:   em($r,$em) 
+  @if $type == 4
+      $bb:$b
+      $rr:$r  
+      > *:not(:last-child)
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom:  em($b,$em)  
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:   em($r,$em)  
+      @supports (rotate: 180deg )
+          @if $b == n or $b == b or $b == ⬇️
+            $bb:0
+          @if $r == n or $r == r or $r == ➡️
+            $rr:0
+          gap: em($bb,$em)   em($rr,$em)  
+          > *:not(:last-child)
+              @if $b != n  and $b != b  and $b != ⬇️
+                margin-bottom:  0
+              @if $r != n  and $r != r and $r != ➡️
+                margin-right:   0
+
+  @if $type == 5
+      $bb:$b
+      $rr:$r  
+      @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  rem(-$b ,$em) 
+      @if $r != n  and $r != r and $r != ➡️
+        margin-right:   rem(-$r ,$em) 
+        > * 
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom:  rem($b,$em)  
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:   rem($r,$em) 
+      @supports (rotate: 180deg )
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom: 0
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:  0
+          @if $b == n  or $b == b   or $b == ⬇️
+            $bb:0
+          @if $r == n  or $r == r  or $r == ➡️
+            $rr:0
+          gap: em($bb,$em ) em($rr,$em )
+          > * 
+            @if $b != n  and $b != b  and $b != ⬇️
+              margin-bottom:  0
+            @if $r != n  and $r != r and $r != ➡️
+              margin-right:   0
+  @if $type == 7
+      @if $b != n  and $b != b  and $b != ⬇️
+          margin-bottom:  rem(-$b,$em) 
+      @if $r != n  and $r != r and $r != ➡️
+        margin-right:   rem(-$r,$em) 
+        > * 
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom:  rem($b,$em) 
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:   rem($r,$em) 
+      @supports (rotate: 180deg )
+          @if $b != n  and $b != b  and $b != ⬇️
+            margin-bottom: 0
+          @if $r != n  and $r != r and $r != ➡️
+            margin-right:  0
+          > * 
+            @if $b != n  and $b != b  and $b != ⬇️
+              margin-bottom: 0
+            @if $r != n  and $r != r and $r != ➡️
+              margin-right: 0
+
+
+
+
+
+=N-last-child5($type:1,$b:n,$r:n)
+  +N-last-child4(16,$type,$b,$r)
+
+
+
+
+//p    -= TEST  =-                                       
+//-===============================================================================================================
+=AbsCenter   // transform: translate(-50% ,-50%) +Abs(50%,50%, 1 ,n,n) // (t,l,z-index,b,r)
+  +Abs(50%,50%, 1 ,n,n) // (t,l,z-index,b,r)
+  transform: translate(-50% ,-50%)
+=AbsC
+  +AbsCenter 
+
+
+
+
+
+
+
+//pi Серый фильтр
+=grayfilter 
+  transition: all 0.3s ease 0s
+  filter: grayscale(1)
+  @media (any-hover: hover) 
+    &:hover 
+      filter: grayscale(0)
+//pi Зеркальное отображение
+=mirror 
+  transform: scale(-1, 1)
+//pi  Скрыть скролл
+=hidescroll 
+  &::-webkit-scrollbar
+    display: none
+
+
+
+  
+
+
+
+
+
+
+
+
+
+//pi Currency -- валюта
+@mixin currency($sym)
+  &::after 
+    content: "#{$sym}"
+
+//pi Grids
+@mixin gridCards($type: fit, $min: 280rem, $max: 1fr, $gap: 30rem) 
+  display: grid
+  gap: $gap
+  grid-template-columns: repeat(auto-#{$type}, minmax($min, $max))
+// Общий файл элементов форм
+// Для подключения/отключения стилей конкретного єлемента формы смотри base/forms/forms.scss
+// @import "base/forms/forms";
+
+// Стили спойлеров
+// @import "base/spollers";
+
+// Стили табов
+// @import "base/tabs";
+
+// Стили карт
+// @import "base/maps";
+
+// Стили блока "показать еще"
+// @import "base/showmore";
+
+// Стили для полноэкранного блока
+// @import "base/fullscreen";
+
+//p Стили для отзывчивых картинок (IBG)
+// Сниппет (HTML): ibg (div c картинкой и классами)
+// Сниппет (HTML): ibga (a c картинкой и классами)
+
+
+
+//pi Шаблоны (заготовки) // @extend %имя шаблона;
+// Счетчик для списка // Сниппет (SCSS): ex
+=listCounter 
+  list-style-type: none
+  counter-reset: item
+  li 
+    position: relative
+    &:before 
+      position: absolute
+      top: 0
+      left: 0
+      counter-increment: item
+      content: counter(item)
+      
+// Адаптивное видео
+=responsiveVideo 
+  position: relative
+  overflow: hidden
+  height: 0
+  padding-bottom: 56.25%
+  video,
+  iframe,
+  object,
+  embed 
+    +Abs(0,0) // (t,l,z-index,b,r)
+    +size(100%)  //(w ,h,radius ,color,c) 
+
+// Видео в качестве фона
+=videoBackground 
+  video,
+  iframe,
+  object,
+  embed 
+      +Fix(50%,50%,-100) // (t,l,z-index,b,r)
+      min-width: 100%
+      min-height: 100%
+      +size(auto)  //(w ,h,radius ,color,c) 
+      transform: translateX(-50%) translateY(-50%)
+      background-size: cover
+
+

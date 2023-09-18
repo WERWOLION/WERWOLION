@@ -1,0 +1,46 @@
+// $browser-context: 16 // Default
+@function em($px, $context:16) 
+  @return math.div($px, $context) + em
+  // @return #{calc($px/$context)  }em
+@function rem($px, $context:16)
+  @return  math.div($px, $context) + rem
+
+
+@function vw($px, $vw:$maketSize) // vw($px, $vw:1200) 
+  @return math.div($px, $vw) * 100vw
+@function vwM($px, $vw:$maketSize) // vw($px, $vw:1200) 
+  @return math.div($px, $vw) * 100vw
+@function vw2($px, $vw:$containerSize) // vw($px, $vw:1200) 
+  @return math.div($px, $vw) * 100vw
+@function vwC($px, $vw:$containerSize) // vw($px, $vw:1200) 
+  @return math.div($px, $vw) * 100vw
+
+  
+
+@function cqw($px, $cqw:$containerSize) // vw($px, $vw:1200) 
+  @return math.div($px, $cqw) * 100cqw
+@function cqh($px, $cqw:$containerSize) // vw($px, $vw:1200) 
+  @return math.div($px, $cqh) * 100cqh
+
+
+
+@function vh($px, $vH: 1080)  // @return #{ math.div($px ,$vH) }vh
+  @return math.div($px ,$vH) * 100vh
+
+@function pr($target:1200, $context: $containerSize) 
+  @return math.div($target, $context) * 100%
+  // @return   calc($target / $context ) * 100%
+  // @return #{$px/$blockSize * 100%}
+
+// coefficient * 1.2
+@function cof($target , $context) //  coefficient
+  @return  math.div($target, $context)
+@function cf($target , $context) //  coefficient
+  @return  math.div($target, $context)
+@function fr($target , $context) //  coefficient
+  @return  math.div($target, $context) + fr
+
+
+
+
+
